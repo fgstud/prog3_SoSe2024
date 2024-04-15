@@ -1,0 +1,14 @@
+
+K
+java:S2140")Use "java.util.Random.nextInt()" instead.(ÏšÉ„üÿÿÿÿ8ÈéÖñì1
+Z	java:S106""9Replace this use of System.out or System.err by a logger.(‚‹Õşÿÿÿÿ8û•‰òì1
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(‘İ¶îúÿÿÿÿ8¬¢ƒòì1
+t
+java:S1128"RRemove this unused import 'com.sun.org.apache.xpath.internal.functions.FuncFalse'.(Á¾òÚúÿÿÿÿ8¹†íñì1
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(”¤ä¨ÿÿÿÿÿ8Îºòì1
+T
+java:S1135	"2Complete the task associated to this TODO comment.(ò÷‹ˆùÿÿÿÿ8Ó÷õñì1
+W
+java:S1191"5Use classes from the Java API instead of Sun classes.(Á¾òÚúÿÿÿÿ8¹†íñì1
+U	java:S106"9Replace this use of System.out or System.err by a logger.(³é¿ö8ôÄÿñì1
+U	java:S106"9Replace this use of System.out or System.err by a logger.(şÁåÁ8’Øïñì1
