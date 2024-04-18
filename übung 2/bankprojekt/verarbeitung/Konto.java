@@ -135,6 +135,33 @@ public abstract class Konto implements Comparable<Konto>
 		setKontostand(getKontostand() + betrag);
 	}
 
+
+	/**
+	 *  Erhöht den Kontostand um den eingezahlten Betrag in der entsprechenden Waehrung
+	 * @param betrag double
+	 * @param w Waehrung
+	 * @throws IllegalArgumentException
+	 */
+	public void einzahlen(double betrag, Waehrung w) {
+		if (betrag < 0 ||!Double.isFinite(betrag)) {
+			throw new IllegalArgumentException("Falscher Betrag");
+		}
+		if (this.waehrung == waehrung) {
+			setKontostand(getKontostand() + betrag);
+		} else if (waehrung.equals(EUR)) {
+			setKontostand(getKontostand() + this.waehrung.euroInWaehrungUmrechnen(betrag));
+		}
+		double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(getKontostand());
+		double betragInEUR = waehrung.waehrungInEuroUmrechnen(betrag);
+		double addBetragOfKontostandAndBetragInEUR = kontostandInEUR + betragInEUR;
+		setKontostand(this.waehrung.euroInWaehrungUmrechnen(addBetragOfKontostandAndBetragInEUR));
+	}
+
+	public void waehrungswechsel(Waehrung neu) {
+		Double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(this.kontostand);
+		Double dispoInEUR = this.waehrung.waehrungInEuroUmrechnen(123); // TODO Add all stuff to Girokonto -yay-
+	}
+
 	/**
 	 * Verringert den Kontostand um betrag in waehrung
 	 *
@@ -155,7 +182,7 @@ public abstract class Konto implements Comparable<Konto>
 		if (this.waehrung == waehrung) {
 			setKontostand(getKontostand() - betrag);
 			return true;
-		} else if (waehrung.equals("EUR")) {
+		} else if (waehrung.equals(EUR)) {
 			setKontostand(getKontostand() - this.waehrung.euroInWaehrungUmrechnen(betrag));
 		}
 		double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(getKontostand());
@@ -238,6 +265,13 @@ public abstract class Konto implements Comparable<Konto>
 		return String.format("%10.2f €" , this.getKontostand());
 	}
 
+	/**
+	 * liefert die aktuelle Waehrung
+	 * @return die Waehrung
+	 */
+	public Waehrung getAktuelleWaehrung() {
+		return this.waehrung;
+	}
 
 
 	/**
