@@ -1,6 +1,8 @@
 package bankprojekt.verarbeitung;
 
 import com.google.common.primitives.Doubles;
+
+import static bankprojekt.verarbeitung.Waehrung.EUR;
 //Abkürzung des Klassennamens ist jetzt erlaubt
 
 /**
@@ -28,6 +30,11 @@ public abstract class Konto implements Comparable<Konto>
 	 * der aktuelle Kontostand
 	 */
 	private double kontostand;
+
+	/**
+	 * die aktuelle Waehrung
+	 */
+	private Waehrung waehrung;
 
 	/**
 	 * setzt den aktuellen Kontostand
@@ -58,6 +65,7 @@ public abstract class Konto implements Comparable<Konto>
 		this.nummer = kontonummer;
 		this.kontostand = 0;
 		this.gesperrt = false;
+		this.waehrung = EUR;
 	}
 	
 	/**
@@ -121,12 +129,42 @@ public abstract class Konto implements Comparable<Konto>
 	 * @throws IllegalArgumentException wenn der betrag negativ ist 
 	 */
 	public void einzahlen(double betrag) {
-		if (betrag < 0 ||!Doubles.isFinite(betrag)) {
+		if (betrag < 0 ||!Double.isFinite(betrag)) {
 			throw new IllegalArgumentException("Falscher Betrag");
 		}
 		setKontostand(getKontostand() + betrag);
 	}
-	
+
+	/**
+	 * Verringert den Kontostand um betrag in waehrung
+	 *
+	 * @param betrag double
+	 * @param waehrung Waehrung
+	 * @return true wenn Abheben erfolgeich
+	 * @throws GesperrtException wenn Konto gesperrt
+	 * @throws IllegalArgumentException Wenn der Betrag netatigv ist
+	 */
+	public boolean abheben(double betrag, Waehrung waehrung) throws GesperrtException{
+		if (this.gesperrt) {
+			throw new GesperrtException(this.nummer);
+		}
+		if (betrag <= 0 || !Double.isFinite(betrag)) {
+			throw new IllegalArgumentException("Falscher Betrag");
+		}
+
+		if (this.waehrung == waehrung) {
+			setKontostand(getKontostand() - betrag);
+			return true;
+		} else if (waehrung.equals("EUR")) {
+			setKontostand(getKontostand() - this.waehrung.euroInWaehrungUmrechnen(betrag));
+		}
+		double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(getKontostand());
+		double betragInEUR = waehrung.waehrungInEuroUmrechnen(betrag);
+		double diffBetweenKontostandAndBetragInEUR = kontostandInEUR - betragInEUR;
+		setKontostand(this.waehrung.euroInWaehrungUmrechnen(diffBetweenKontostandAndBetragInEUR));
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		String ausgabe;
@@ -199,7 +237,9 @@ public abstract class Konto implements Comparable<Konto>
 	{
 		return String.format("%10.2f €" , this.getKontostand());
 	}
-	
+
+
+
 	/**
 	 * Vergleich von this mit other; Zwei Konten gelten als gleich,
 	 * wen sie die gleiche Kontonummer haben
