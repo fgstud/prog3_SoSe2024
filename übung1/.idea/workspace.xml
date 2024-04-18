@@ -136,6 +136,7 @@
         <option value="$PROJECT_DIR$/src/Zensurenspiegel/Zensurenspiegel.java" />
         <option value="$PROJECT_DIR$/src/uhrzeit/Uhr.java" />
         <option value="$PROJECT_DIR$/src/uhrzeit/Zeit.java" />
+        <option value="$PROJECT_DIR$/src/menu/Menu.java" />
       </list>
     </option>
   </component>
@@ -236,12 +237,12 @@
       <option name="presentableId" value="Default" />
       <updated>1712842777647</updated>
       <workItem from="1712842781331" duration="7239000" />
-      <workItem from="1713204678713" duration="2445000" />
+      <workItem from="1713204678713" duration="2893000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9684000" />
+    <option name="totallyTimeSpent" value="10132000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1125" extended-state="6" />
@@ -395,6 +396,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <element signature="e#101#102#0" expanded="true" />
+            <element signature="e#134#135#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
