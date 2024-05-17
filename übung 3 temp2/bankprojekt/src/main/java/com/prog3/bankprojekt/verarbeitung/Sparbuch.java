@@ -1,4 +1,4 @@
-package com.bankprojekt.verarbeitung;
+package com.prog3.bankprojekt.verarbeitung;
 
 import java.time.LocalDate;
 
@@ -87,7 +87,7 @@ public class Sparbuch extends Konto {
 	@Override
 	public void waehrungswechsel(Waehrung neu) {
 		super.waehrungswechsel(neu);
-		Double bereitAbgehobenInEur = this.getAktuelleWaehrung().waehrungInEuroUmrechnen(this.bereitsAbgehoben);
+		double bereitAbgehobenInEur = this.getAktuelleWaehrung().waehrungInEuroUmrechnen(this.bereitsAbgehoben);
 		this.bereitsAbgehoben = neu.euroInWaehrungUmrechnen(bereitAbgehobenInEur);
 	}
 }

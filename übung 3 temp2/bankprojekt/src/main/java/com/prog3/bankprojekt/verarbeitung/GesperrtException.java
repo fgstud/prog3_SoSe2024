@@ -1,4 +1,4 @@
-package com.bankprojekt.verarbeitung;
+package com.prog3.bankprojekt.verarbeitung;
 
 /**
  * tritt bei einem schädigenden Zugriff auf ein gesperrtes Konto auf

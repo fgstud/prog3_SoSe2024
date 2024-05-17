@@ -1,4 +1,4 @@
-package com.bankprojekt.verarbeitung;
+package com.prog3.bankprojekt.verarbeitung;
 
 public enum Waehrung {
     EUR(1.0f), ESCUDO(109.8269f), DOBRA(24304.7429f), FRANC(490.92f);

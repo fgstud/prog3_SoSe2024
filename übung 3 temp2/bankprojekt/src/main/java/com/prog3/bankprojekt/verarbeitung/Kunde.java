@@ -1,4 +1,4 @@
-package com.bankprojekt.verarbeitung;
+package com.prog3.bankprojekt.verarbeitung;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

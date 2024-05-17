@@ -1,8 +1,8 @@
-package com.bankprojekt.verarbeitung;
+package com.prog3.bankprojekt.verarbeitung;
 
 //import com.google.common.primitives.Doubles;
 
-import static com.bankprojekt.verarbeitung.Waehrung.EUR;
+import static com.prog3.bankprojekt.verarbeitung.Waehrung.EUR;
 //Abkürzung des Klassennamens ist jetzt erlaubt
 
 /**

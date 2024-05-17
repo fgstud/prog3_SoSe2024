@@ -1,4 +1,4 @@
-package com.bankprojekt.verarbeitung;
+package com.prog3.bankprojekt.verarbeitung;
 
 /**
  * Ein Girokonto, d.h. ein Konto mit einem Dispo und der Fähigkeit,
@@ -68,6 +68,7 @@ public class Girokonto extends UeberweisungsfaehigesKonto{
             throw new GesperrtException(this.getKontonummer());
         if (betrag < 0 || Double.isNaN(betrag) || Double.isInfinite(betrag)|| empfaenger == null || verwendungszweck == null)
             throw new IllegalArgumentException("Parameter fehlerhaft");
+
         if (getKontostand() - betrag >= - dispo)
         {
             setKontostand(getKontostand() - betrag);

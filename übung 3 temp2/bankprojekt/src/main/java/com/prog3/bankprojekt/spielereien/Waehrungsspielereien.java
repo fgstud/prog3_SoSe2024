@@ -1,6 +1,6 @@
-package com.bankprojekt.spielereien;
+package com.prog3.bankprojekt.spielereien;
 
-import com.bankprojekt.verarbeitung.*;
+import com.prog3.bankprojekt.verarbeitung.*;
 
 import java.time.LocalDate;
 
