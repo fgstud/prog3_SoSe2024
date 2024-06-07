@@ -1,8 +1,11 @@
 
-R
-java:S5993"9Change the visibility of this constructor to "protected".(Ì¼±Ğøÿÿÿÿ
-R
-java:S5993"9Change the visibility of this constructor to "protected".(ÒİÇùÿÿÿÿ
-L	java:S106"9Replace this use of System.out or System.err by a logger.(ã©
-U
-java:S1126"AReplace this if-then-else statement by a single return statement.(Ï×éˆ
+n
+java:S1192…"PDefine a constant instead of duplicating this literal "Falscher Betrag" 3 times.(§Ã÷ğ8İÔ¼ñ1
+]	java:S125"<This block of commented-out lines of code should be removed.(Êî¦êıÿÿÿÿ8èÔ¼ñ1
+[
+java:S5993="9Change the visibility of this constructor to "protected".(Ì¼±Ğøÿÿÿÿ8èÔ¼ñ1
+[
+java:S5993J"9Change the visibility of this constructor to "protected".(ÒİÇùÿÿÿÿ8èÔ¼ñ1
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ã©8éÔ¼ñ1
+_
+java:S1126¬"AReplace this if-then-else statement by a single return statement.(Ï×éˆ8ñÔ¼ñ1

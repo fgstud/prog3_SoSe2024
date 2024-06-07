@@ -1,7 +1,23 @@
 
+_
+/bankprojekt/verarbeitung/GesperrtException.java,3\7\37047abcd67a38ca7298192ed8373f7c87b61afb
+h
+8bankprojekt/verarbeitung/UeberweisungsfaehigesKonto.java,8\1\8189abff1f55fc24840792da9b363f6f71e02413
+V
+&bankprojekt/verarbeitung/Sparbuch.java,1\3\1335213df4335ca4b5a040b468485e01d68cdbe0
 U
-%spielereien/Waehrungsspielereien.java,2/f/2f08cf8a112e5fb12335da499638550b27284386
+%spielereien/Waehrungsspielereien.java,2\f\2f08cf8a112e5fb12335da499638550b27284386
 S
-#bankprojekt/verarbeitung/Konto.java,c/9/c993129237793c1d0245b5437b6ddc6340eb2623
+#bankprojekt/verarbeitung/Kunde.java,7\8\787b834271a0594f5793a53fb72b2ef3917d9f38
+F
+KontenSpielereien.java,7\8\78a1504af72cd6095d813641606897e043fd982a
+S
+#bankprojekt/verarbeitung/Konto.java,c\9\c993129237793c1d0245b5437b6ddc6340eb2623
 W
-'bankprojekt/verarbeitung/Girokonto.java,3/3/334f73d07cb24c73c4d0102b0c28810be9f02d12
+'bankprojekt/verarbeitung/Girokonto.java,3\3\334f73d07cb24c73c4d0102b0c28810be9f02d12
+V
+&bankprojekt/verarbeitung/Kontoart.java,6\e\6eb107daf789062a299308797136b4d4ee4ca1f1
+V
+&bankprojekt/verarbeitung/Waehrung.java,7\9\79ab92ef8c686490cc1228b2ffb49f11854f68ff
+\
+,test/bankprojekt/verarbeitung/KontoTest.java,7\0\7036642ad39d42f6b8fac524c6d1212548db5f91

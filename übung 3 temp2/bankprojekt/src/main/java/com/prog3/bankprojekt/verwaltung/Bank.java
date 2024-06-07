@@ -3,6 +3,8 @@ package com.prog3.bankprojekt.verwaltung;
 import com.prog3.bankprojekt.verarbeitung.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Bank {
     private final long bankleitzahl;
@@ -10,7 +12,7 @@ public class Bank {
     private long currentKontoNr;
 
     /**
-     * @param bankleitzahl
+     * @param bankleitzahl der bank
      */
     public Bank(long bankleitzahl) {
         this.bankleitzahl = bankleitzahl;
@@ -19,15 +21,15 @@ public class Bank {
     }
 
     /**
-     * @return
+     * @return bankleitzahl der bank
      */
     public long getBankleitzahl() {
         return this.bankleitzahl;
     }
 
     /**
-     * @param inhaber
-     * @return
+     * @param inhaber des Kontos
+     * @return erstellte Kontonachricht
      */
     public long girokontoErstellen(Kunde inhaber) {
         Konto temp = new Girokonto(inhaber, currentKontoNr, 0);
@@ -36,8 +38,8 @@ public class Bank {
     }
 
     /**
-     * @param inhaber
-     * @return
+     * @param inhaber des Kontos
+     * @return erstellte Kontonummer
      */
     public long sparbuchErstellen(Kunde inhaber) {
         Konto temp = new Sparbuch(inhaber, currentKontoNr);
@@ -46,7 +48,7 @@ public class Bank {
     }
 
     /**
-     * @return
+     * @return ein String der alle kontonummern mit Kontostand enthaelt
      */
     public String getAlleKonten() {
         String temp = "";
@@ -63,7 +65,7 @@ public class Bank {
     }
 
     /**
-     * @return
+     * @return Liste mit allen Kontonummer
      */
     public List<Long> getAlleKontonummern() {
         List<Long> kontonummern = new ArrayList<>();
@@ -75,9 +77,9 @@ public class Bank {
     }
 
     /**
-     * @param von
-     * @param betrag
-     * @return
+     * @param von    Kontonummer des Kontos von dem Abgehoben wird
+     * @param betrag der abgehoben werden soll
+     * @return erfolg des abhebens
      * @throws GesperrtException
      */
     public boolean geldAbheben(long von, double betrag) throws GesperrtException, IllegalArgumentException {
@@ -95,6 +97,12 @@ public class Bank {
         konten.get(auf).einzahlen(betrag);
     }
 
+    /**
+     * @param nummer
+     * @return
+     * @throws KontoNichtLeerException
+     * @throws IllegalArgumentException
+     */
     public boolean kontoLoeschen(long nummer) throws KontoNichtLeerException, IllegalArgumentException {
         verifyIfKontoExists(nummer);
         if (konten.get(nummer).getKontostand() > 0) {
@@ -104,11 +112,25 @@ public class Bank {
         return true;
     }
 
+    /**
+     * @param nummer
+     * @return
+     * @throws IllegalArgumentException
+     */
     public double getKontostand(long nummer) throws IllegalArgumentException {
         verifyIfKontoExists(nummer);
         return konten.get(nummer).getKontostand();
     }
 
+    /**
+     * @param vonKontonr
+     * @param nachKontonr
+     * @param betrag
+     * @param verwendungszweck
+     * @return
+     * @throws IllegalArgumentException
+     * @throws GesperrtException
+     */
     public boolean geldUeberweisen(long vonKontonr, long nachKontonr, double betrag, String verwendungszweck) throws IllegalArgumentException, GesperrtException {
         verifyIfKontoExists(vonKontonr);
         verifyIfKontoExists(nachKontonr);
@@ -148,5 +170,58 @@ public class Bank {
         if (!this.konten.containsKey(kontonr)) {
             throw new IllegalArgumentException("Konto existiert nicht: " + kontonr);
         }
+    }
+
+    /**
+     * die Methode sperrt alle Konten, deren Kontostand im Minus ist.
+     */
+    void pleitegeierSperren() {
+        konten.values().stream()
+                .filter(konto -> konto.getKontostand() < 0)
+                .forEach(konto -> konto.sperren());
+
+
+    }
+
+    /**
+     * Die Methode liefert eine Liste aller Kunden, die auf einem Konto einen Konto-stand haben, der mindestens minimum beträgt.
+     *
+     * @param minimum
+     * @return
+     */
+
+    List<Kunde> getKundenMitVollemKonto(double minimum) {
+        return konten.values().stream()
+                .filter(konto -> konto.getKontostand() >= minimum)
+                .map(konto -> konto.getInhaber())
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * liefert die Namen und Geburtstage aller Kunden der Bank. Doppelte Namen sol-len dabei aussortiert werden. Sortieren Sie die Liste nach dem Geburtsdatum.
+     *
+     * @return alle Kunden mit ihren Geburtsdaten, vom Ältesten zum Jüngsten sortiert.
+     */
+    String getKundengeburtstage() {
+
+        return konten.values().stream()
+                .map(konto -> konto.getInhaber())
+                .distinct()
+                .sorted(Comparator.comparing(kunde -> kunde.getGeburtstag()))
+                .map(kunde -> kunde.getName() + "|" +kunde.getGeburtstag())
+                .reduce("",(endString, dasVonVorherJeweiligerKundeSieheEineZeileWeiterOben) -> endString + System.lineSeparator() + dasVonVorherJeweiligerKundeSieheEineZeileWeiterOben);
+    }
+
+    /**
+     * liefert eine Liste aller freien Kontonummern, die im vergebenen Bereich liegen. es geht um die Kontonummern,
+     * die dazwischen liegen und für die es gerade kein Konto gibt, z.B. weil es gelöscht wurde.
+     *
+     * @return eine Liste aller bisher nicht verwendeten Kontonummern
+     */
+    List<Long> getKontonummernLuecken() {
+        return LongStream.range(0, this.currentKontoNr + 1)
+                .filter(kontonummer -> konten.containsKey(kontonummer) == false)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }

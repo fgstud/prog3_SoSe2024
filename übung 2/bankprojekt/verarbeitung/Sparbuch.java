@@ -72,11 +72,11 @@ public class Sparbuch extends Konto {
 		{
 			this.bereitsAbgehoben = 0;
 		}
-		if (getKontostand() - betrag >= 0.50 && 
-				 bereitsAbgehoben + betrag <= Sparbuch.ABHEBESUMME)
+		if (getKontostand() - betrag >= 0.50 && bereitsAbgehoben + betrag <= Sparbuch.ABHEBESUMME)
 		{
-			setKontostand(getKontostand() - betrag);
-			bereitsAbgehoben += betrag;
+			double betragConvertedToCurrentWaehrung = getAktuelleWaehrung().euroInWaehrungUmrechnen(betrag);
+			setKontostand(getKontostand() - betragConvertedToCurrentWaehrung);
+			bereitsAbgehoben += betragConvertedToCurrentWaehrung;
 			this.zeitpunkt = LocalDate.now();
 			return true;
 		}
@@ -84,4 +84,10 @@ public class Sparbuch extends Konto {
 			return false;
 	}
 
+	@Override
+	public void waehrungswechsel(Waehrung neu) {
+		super.waehrungswechsel(neu);
+		Double bereitAbgehobenInEur = this.getAktuelleWaehrung().waehrungInEuroUmrechnen(this.bereitsAbgehoben);
+		this.bereitsAbgehoben = neu.euroInWaehrungUmrechnen(bereitAbgehobenInEur);
+	}
 }

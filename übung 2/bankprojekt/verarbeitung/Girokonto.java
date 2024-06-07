@@ -110,4 +110,11 @@ public class Girokonto extends UeberweisungsfaehigesKonto{
 			return false;
 	}
 
+	@Override
+	public void waehrungswechsel(Waehrung neu) {
+		super.waehrungswechsel(neu);
+		Double dispoInEur = this.getAktuelleWaehrung().waehrungInEuroUmrechnen(this.getDispo());
+		this.dispo = neu.euroInWaehrungUmrechnen(dispoInEur);
+	}
+
 }

@@ -2,11 +2,7 @@ package spielereien;
 
 import java.time.LocalDate;
 
-import bankprojekt.verarbeitung.GesperrtException;
-import bankprojekt.verarbeitung.Girokonto;
-import bankprojekt.verarbeitung.Konto;
-import bankprojekt.verarbeitung.Kunde;
-import bankprojekt.verarbeitung.Sparbuch;
+import bankprojekt.verarbeitung.*;
 
 /**
  * spielt ein wenig mit den Währungsmethoden des Bankprojektes herum

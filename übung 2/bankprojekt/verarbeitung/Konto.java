@@ -1,6 +1,6 @@
 package bankprojekt.verarbeitung;
 
-import com.google.common.primitives.Doubles;
+//import com.google.common.primitives.Doubles;
 
 import static bankprojekt.verarbeitung.Waehrung.EUR;
 //Abkürzung des Klassennamens ist jetzt erlaubt
@@ -146,20 +146,27 @@ public abstract class Konto implements Comparable<Konto>
 		if (betrag < 0 ||!Double.isFinite(betrag)) {
 			throw new IllegalArgumentException("Falscher Betrag");
 		}
-		if (this.waehrung == waehrung) {
+		if (this.waehrung == w) {
 			setKontostand(getKontostand() + betrag);
-		} else if (waehrung.equals(EUR)) {
+		} else if (w.equals(EUR)) {
 			setKontostand(getKontostand() + this.waehrung.euroInWaehrungUmrechnen(betrag));
+		} else {
+			double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(getKontostand());
+			double betragInEUR = w.waehrungInEuroUmrechnen(betrag);
+			double addBetragOfKontostandAndBetragInEUR = kontostandInEUR + betragInEUR;
+			setKontostand(this.waehrung.euroInWaehrungUmrechnen(addBetragOfKontostandAndBetragInEUR));
 		}
-		double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(getKontostand());
-		double betragInEUR = waehrung.waehrungInEuroUmrechnen(betrag);
-		double addBetragOfKontostandAndBetragInEUR = kontostandInEUR + betragInEUR;
-		setKontostand(this.waehrung.euroInWaehrungUmrechnen(addBetragOfKontostandAndBetragInEUR));
+
 	}
 
+	/**
+	 * Wechselt die Waehrung des aktuellen Kontos
+	 * @param neu Waehrung
+	 */
 	public void waehrungswechsel(Waehrung neu) {
 		Double kontostandInEUR = this.waehrung.waehrungInEuroUmrechnen(this.kontostand);
-		Double dispoInEUR = this.waehrung.waehrungInEuroUmrechnen(123); // TODO Add all stuff to Girokonto -yay-
+		this.kontostand = neu.euroInWaehrungUmrechnen(kontostandInEUR);
+		this.waehrung = neu;
 	}
 
 	/**
@@ -262,9 +269,10 @@ public abstract class Konto implements Comparable<Konto>
 	 */
 	public String getKontostandFormatiert()
 	{
-		return String.format("%10.2f €" , this.getKontostand());
+		return String.format("%10.2f %2$s" , this.getKontostand(), this.waehrung);
 	}
-
+//Ändern Sie die Methode getKontostandFormatiert() in Konto so ab, dass immer
+//die aktuelle Währung angezeigt wird.
 	/**
 	 * liefert die aktuelle Waehrung
 	 * @return die Waehrung
