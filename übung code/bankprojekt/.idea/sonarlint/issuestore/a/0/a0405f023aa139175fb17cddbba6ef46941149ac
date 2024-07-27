@@ -1,0 +1,21 @@
+
+D
+java:S14816")Remove this unused "temp" local variable.(â·Î¶ùÿÿÿÿ
+g
+java:S6201"KReplace this instanceof check and cast with 'instanceof Girokonto vonKonto'(Ğ·µŒıÿÿÿÿ
+I
+java:S1135‹"2Complete the task associated to this TODO comment.(³»½š
+W
+java:S1612µ";Replace this lambda with method reference 'Konto::sperren'.(Æñ¾«şÿÿÿÿ
+i
+java:S6204Å"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+U
+java:S1612Ä">Replace this lambda with method reference 'Konto::getInhaber'.(Í®’
+U
+java:S1612Ğ">Replace this lambda with method reference 'Konto::getInhaber'.(Í®’
+]
+java:S1612Ò"AReplace this lambda with method reference 'Kunde::getGeburtstag'.(º Áôıÿÿÿÿ
+i
+java:S6204á"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+=
+java:S1125ß"'Remove the unnecessary boolean literal.(ÉÎŒ#

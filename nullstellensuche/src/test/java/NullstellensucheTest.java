@@ -10,9 +10,6 @@ class NullstellensucheTest {
     @Test
     void test1() throws NoNullstelleException {
         Assertions.assertEquals(2.5, Nullstellensuche.finde((x -> x * 2 - 5), -100, 100), 0.01);
-
-
-
     }
     @Test
     void test2() throws NoNullstelleException {
@@ -26,7 +23,6 @@ class NullstellensucheTest {
 
     @Test
     void test4() throws NoNullstelleException{
-
         Assertions.assertThrows(NoNullstelleException.class, () -> Nullstellensuche.finde((x -> x * x + 1), 0, 100));
     }
 }
